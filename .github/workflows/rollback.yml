@@ -1,0 +1,47 @@
+name: Roll back GitHub Pages
+run-name: Rollback from run ${{ inputs.source_run_id }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Successful CI/CD run ID containing the required site artifact
+        required: true
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-rollback
+  cancel-in-progress: false
+
+jobs:
+  rollback:
+    name: Redeploy retained artifact
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download versioned site artifact
+        uses: actions/download-artifact@v8
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ inputs.source_run_id }}
+          pattern: site-*
+          path: dist
+          merge-multiple: true
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+      - name: Deploy retained artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
+
