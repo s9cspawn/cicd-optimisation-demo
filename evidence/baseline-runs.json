@@ -1,0 +1,100 @@
+{
+  "phase": "baseline",
+  "source": "GitHub Actions run and job timestamps exported with GitHub CLI",
+  "workflow": ".github/workflows/pages.yml",
+  "commit": "95f52226fa664d289b9209a589a36f302d1d564f",
+  "captured_at": "2026-09-30T09:55:00Z",
+  "method": {
+    "total_seconds": "workflow startedAt to updatedAt",
+    "stage_seconds": "sum of matching GitHub Actions step timestamps; timestamps have one-second resolution",
+    "p95": "nearest-rank method"
+  },
+  "summary": {
+    "sample_size": 5,
+    "successful_runs": 5,
+    "failed_runs": 0,
+    "failure_rate_percent": 0,
+    "average_total_seconds": 108,
+    "p95_total_seconds": 117,
+    "average_verify_job_seconds": 79.4,
+    "average_deploy_job_seconds": 19,
+    "average_install_seconds": 5.4,
+    "average_build_seconds": 1.4,
+    "average_test_seconds": 1.2,
+    "average_scan_seconds": 68.6,
+    "average_deploy_steps_seconds": 8.2
+  },
+  "runs": [
+    {
+      "run_number": 1,
+      "run_id": 36697503043,
+      "total_seconds": 117,
+      "verify_job_seconds": 84,
+      "deploy_job_seconds": 23,
+      "install_seconds": 6,
+      "build_seconds": 2,
+      "test_seconds": 2,
+      "scan_seconds": 71,
+      "deploy_steps_seconds": 9,
+      "conclusion": "success",
+      "url": "https://github.com/s9cspawn/cicd-optimisation-demo/actions/runs/36697503043"
+    },
+    {
+      "run_number": 2,
+      "run_id": 36698081105,
+      "total_seconds": 104,
+      "verify_job_seconds": 80,
+      "deploy_job_seconds": 15,
+      "install_seconds": 5,
+      "build_seconds": 1,
+      "test_seconds": 1,
+      "scan_seconds": 70,
+      "deploy_steps_seconds": 8,
+      "conclusion": "success",
+      "url": "https://github.com/s9cspawn/cicd-optimisation-demo/actions/runs/36698081105"
+    },
+    {
+      "run_number": 3,
+      "run_id": 36698351025,
+      "total_seconds": 106,
+      "verify_job_seconds": 78,
+      "deploy_job_seconds": 19,
+      "install_seconds": 5,
+      "build_seconds": 2,
+      "test_seconds": 1,
+      "scan_seconds": 68,
+      "deploy_steps_seconds": 8,
+      "conclusion": "success",
+      "url": "https://github.com/s9cspawn/cicd-optimisation-demo/actions/runs/36698351025"
+    },
+    {
+      "run_number": 4,
+      "run_id": 36698677932,
+      "total_seconds": 109,
+      "verify_job_seconds": 79,
+      "deploy_job_seconds": 19,
+      "install_seconds": 6,
+      "build_seconds": 1,
+      "test_seconds": 1,
+      "scan_seconds": 68,
+      "deploy_steps_seconds": 9,
+      "conclusion": "success",
+      "url": "https://github.com/s9cspawn/cicd-optimisation-demo/actions/runs/36698677932"
+    },
+    {
+      "run_number": 5,
+      "run_id": 36698905269,
+      "total_seconds": 104,
+      "verify_job_seconds": 76,
+      "deploy_job_seconds": 19,
+      "install_seconds": 5,
+      "build_seconds": 1,
+      "test_seconds": 1,
+      "scan_seconds": 66,
+      "deploy_steps_seconds": 7,
+      "conclusion": "success",
+      "url": "https://github.com/s9cspawn/cicd-optimisation-demo/actions/runs/36698905269"
+    }
+  ]
+}
+
