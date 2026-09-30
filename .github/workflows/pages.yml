@@ -1,5 +1,5 @@
 name: CI/CD Pipeline
-run-name: Baseline benchmark ${{ inputs.benchmark_run || 'push' }}
+run-name: Optimised benchmark ${{ inputs.benchmark_run || 'push' }}
 
 on:
   push:
@@ -7,12 +7,13 @@ on:
   workflow_dispatch:
     inputs:
       benchmark_run:
-        description: Baseline run number
+        description: Optimised run number
         required: true
         type: choice
         options: ['1', '2', '3', '4', '5']
 
 permissions:
+  actions: read
   contents: read
   pages: write
   id-token: write
@@ -23,22 +24,18 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  verify:
-    name: Build, test and scan
+  quality:
+    name: Lint and test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
         uses: actions/checkout@v6
 
-      - name: Set up Node.js
+      - name: Set up Node.js with npm cache
         uses: actions/setup-node@v7
         with:
           node-version: 22
-
-      - name: Initialise CodeQL
-        uses: github/codeql-action/init@v4
-        with:
-          languages: javascript-typescript
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
@@ -49,36 +46,59 @@ jobs:
       - name: Test
         run: npm run test:coverage
 
+  security:
+    name: Dependency and CodeQL scans
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js with npm cache
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Initialise CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: javascript-typescript
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Audit dependencies
         run: npm run audit
-
-      - name: Build
-        run: npm run build
 
       - name: Analyse with CodeQL
         uses: github/codeql-action/analyze@v4
 
-  deploy:
-    name: Rebuild and deploy
-    needs: verify
+  build:
+    name: Build once
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout source again
+      - name: Checkout source
         uses: actions/checkout@v6
 
-      - name: Set up Node.js again
+      - name: Set up Node.js with npm cache
         uses: actions/setup-node@v7
         with:
           node-version: 22
+          cache: npm
 
-      - name: Install dependencies again
+      - name: Install dependencies
         run: npm ci
 
-      - name: Build again
+      - name: Build
         run: npm run build
+
+      - name: Store versioned rollback artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: site-${{ github.sha }}
+          path: dist
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -88,6 +108,14 @@ jobs:
         with:
           path: dist
 
+  deploy:
+    name: Deploy tested artifact
+    needs: [quality, security, build]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
