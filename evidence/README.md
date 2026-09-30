@@ -14,3 +14,15 @@ Stage values sum the named GitHub Actions steps. Because GitHub timestamps have 
 
 The baseline mean was **108 seconds**, nearest-rank p95 was **117 seconds**, and all five runs succeeded (**0% failure rate**).
 
+## Optimised definition
+
+- Merge commit: [`d8fb8e4`](https://github.com/s9cspawn/cicd-optimisation-demo/commit/d8fb8e48060eee3e7cf38c6abadd162b5cecb219)
+- Pull request: [#1](https://github.com/s9cspawn/cicd-optimisation-demo/pull/1)
+- Five sequential warm-cache `workflow_dispatch` runs on the same commit and runner label
+- Lint/tests, CodeQL/dependency scans, and the production build run in parallel
+- The production build is retained for 30 days and reused by deployment and rollback
+
+The automatic post-merge run was treated as a separate warm-up observation and excluded from the five-run comparison. The optimised mean was **93.6 seconds**, nearest-rank p95 was **99 seconds**, and all five runs succeeded (**0% failure rate**).
+
+The verified artifact-only rollback completed in **17 seconds**, an **84.3%** reduction compared with the baseline full-pipeline recovery-time proxy of 108 seconds.
+

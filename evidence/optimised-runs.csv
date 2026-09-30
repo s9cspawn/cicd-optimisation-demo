@@ -1,0 +1,7 @@
+phase,run_number,run_id,commit_sha,started_at,completed_at,total_seconds,quality_job_seconds,security_job_seconds,build_job_seconds,deploy_job_seconds,install_seconds,build_seconds,test_seconds,scan_seconds,deploy_steps_seconds,conclusion,run_url
+optimised,1,36702435710,d8fb8e48060eee3e7cf38c6abadd162b5cecb219,2026-09-30T10:26:30Z,2026-09-30T10:27:54Z,84,8,64,9,10,3,1,1,56,8,success,https://github.com/s9cspawn/cicd-optimisation-demo/actions/runs/36702435710
+optimised,2,36702876074,d8fb8e48060eee3e7cf38c6abadd162b5cecb219,2026-09-30T10:30:46Z,2026-09-30T10:32:22Z,96,16,76,17,11,11,1,2,64,9,success,https://github.com/s9cspawn/cicd-optimisation-demo/actions/runs/36702876074
+optimised,3,36703118636,d8fb8e48060eee3e7cf38c6abadd162b5cecb219,2026-09-30T10:33:09Z,2026-09-30T10:34:43Z,94,8,76,14,9,5,1,1,65,8,success,https://github.com/s9cspawn/cicd-optimisation-demo/actions/runs/36703118636
+optimised,4,36703327609,d8fb8e48060eee3e7cf38c6abadd162b5cecb219,2026-09-30T10:35:16Z,2026-09-30T10:36:55Z,99,8,81,15,8,6,1,1,71,8,success,https://github.com/s9cspawn/cicd-optimisation-demo/actions/runs/36703327609
+optimised,5,36703560098,d8fb8e48060eee3e7cf38c6abadd162b5cecb219,2026-09-30T10:37:37Z,2026-09-30T10:39:12Z,95,15,77,17,9,7,2,1,71,9,success,https://github.com/s9cspawn/cicd-optimisation-demo/actions/runs/36703560098
+

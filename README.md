@@ -2,6 +2,11 @@
 
 A small production-style website used to benchmark a real GitHub Actions pipeline before and after measurable optimisation.
 
+- **Live site:** https://s9cspawn.github.io/cicd-optimisation-demo/
+- **Final report:** [`output/pdf/CI-CD-Benchmark-Optimisation-Report.pdf`](output/pdf/CI-CD-Benchmark-Optimisation-Report.pdf)
+- **Source report:** [`report/CI-CD-Benchmark-Optimisation-Report.md`](report/CI-CD-Benchmark-Optimisation-Report.md)
+- **Raw evidence exports:** [`evidence/`](evidence/)
+
 ## Experiment
 
 The experiment uses the same website and GitHub-hosted runner class for two five-run samples.

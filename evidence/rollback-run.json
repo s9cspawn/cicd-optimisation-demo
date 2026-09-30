@@ -1,0 +1,15 @@
+{
+  "workflow": ".github/workflows/rollback.yml",
+  "run_id": 36704893909,
+  "source_run_id": 36702435710,
+  "source_commit": "d8fb8e48060eee3e7cf38c6abadd162b5cecb219",
+  "started_at": "2026-09-30T10:50:50Z",
+  "completed_at": "2026-09-30T10:51:07Z",
+  "total_seconds": 17,
+  "baseline_rebuild_proxy_seconds": 108,
+  "recovery_time_reduction_percent": 84.3,
+  "conclusion": "success",
+  "post_deployment_smoke_test": "passed",
+  "url": "https://github.com/s9cspawn/cicd-optimisation-demo/actions/runs/36704893909"
+}
+
